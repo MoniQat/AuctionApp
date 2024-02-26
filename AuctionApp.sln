@@ -3,21 +3,24 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34511.84
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuctionApp.Core", "src\AuctionApp.Core\AuctionApp.Core.csproj", "{1C91A3C4-BDAB-432B-AAED-C97E351C3667}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuctionApp.Core", "src\AuctionApp.Core\AuctionApp.Core.csproj", "{1C91A3C4-BDAB-432B-AAED-C97E351C3667}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{57420803-8712-4ABC-AE6B-2B45F42820EA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuctionApp.Tests", "tests\AuctionApp.Tests\AuctionApp.Tests.csproj", "{64FD5D54-C310-4A28-A20B-D22CF9553D40}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuctionApp.Tests", "tests\AuctionApp.Tests\AuctionApp.Tests.csproj", "{64FD5D54-C310-4A28-A20B-D22CF9553D40}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{0451872C-1629-411E-A3E9-FA23B8E73A6F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuctionApp.Application", "src\AuctionApp.Application\AuctionApp.Application.csproj", "{79D94094-511D-4E56-90A4-8B6EC91E8904}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuctionApp.Application", "src\AuctionApp.Application\AuctionApp.Application.csproj", "{79D94094-511D-4E56-90A4-8B6EC91E8904}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuctionApp.Infrastructure.Data", "src\AuctionApp.Infrastructure.Data\AuctionApp.Infrastructure.Data.csproj", "{6B780BDB-A118-451E-B1A1-718B23B963EE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuctionApp.Infrastructure.Data", "src\AuctionApp.Infrastructure.Data\AuctionApp.Infrastructure.Data.csproj", "{6B780BDB-A118-451E-B1A1-718B23B963EE}"
+	ProjectSection(ProjectDependencies) = postProject
+		{1C91A3C4-BDAB-432B-AAED-C97E351C3667} = {1C91A3C4-BDAB-432B-AAED-C97E351C3667}
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuctionApp.Infrastructure", "src\AuctionApp.Infrastructure\AuctionApp.Infrastructure.csproj", "{F15779BB-A966-49BC-9283-FC439BD3CF20}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuctionApp.Infrastructure", "src\AuctionApp.Infrastructure\AuctionApp.Infrastructure.csproj", "{F15779BB-A966-49BC-9283-FC439BD3CF20}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuctionApp.Shared", "src\AuctionApp.Shared\AuctionApp.Shared.csproj", "{57789BBC-D9AF-487D-993E-D1B3819E6822}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuctionApp.Shared", "src\AuctionApp.Shared\AuctionApp.Shared.csproj", "{57789BBC-D9AF-487D-993E-D1B3819E6822}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuctionApp.WebUI", "src\AuctionApp.WebUI\AuctionApp.WebUI.csproj", "{C8580147-6DD6-48DB-AC7B-5F1B757E4416}"
 EndProject

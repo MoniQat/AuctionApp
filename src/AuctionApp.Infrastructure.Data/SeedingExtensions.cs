@@ -9,7 +9,7 @@ namespace AuctionApp.Infrastructure.Data
         {
             using (var scope = applicationBuilder.ApplicationServices.CreateScope())
             {
-                var dbContext = scope.ServiceProvider.GetRequiredService<AuctionDbContext>();
+                var dbContext = scope.ServiceProvider.GetRequiredService<AuctionDBContext>();
                 var database = dbContext.Database;
 
                 await database.EnsureDeletedAsync();

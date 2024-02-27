@@ -9,5 +9,7 @@
         public string Password { get; set; } // do it as hash
         public string EmailAddress { get; set; }
         public DateOnly DateOfBirth { get; set; }
+
+        public ICollection<Bid> Bids { get; set; }
     }
 }

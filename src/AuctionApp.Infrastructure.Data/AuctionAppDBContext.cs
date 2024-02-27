@@ -5,7 +5,11 @@ namespace AuctionApp.Infrastructure.Data
 {
     public class AuctionDBContext : DbContext
     {
-        public AuctionDBContext(DbContextOptions options) : base(options) { }
+        public AuctionDBContext()
+        {
+
+        }
+        public AuctionDBContext(DbContextOptions<AuctionDBContext> options) : base(options) { }
         public DbSet<User> Users { get; set; }
         public DbSet<Item> Items { get; set; }
         public DbSet<Category> Categories { get; set; }
@@ -17,12 +21,11 @@ namespace AuctionApp.Infrastructure.Data
             optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=AuctionAppDB;Trusted_Connection=True;");
         }
 
-        /*protected override void OnModelCreating(ModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //modelBuilder.ApplyConfigurationsFromAssembly(typeof(AuctionDbContext).Assembly); // ??
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(AuctionDBContext).Assembly);
 
             base.OnModelCreating(modelBuilder);
-            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
-        }*/
+        }
     }
 }

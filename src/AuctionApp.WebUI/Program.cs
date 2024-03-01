@@ -1,10 +1,24 @@
+using AuctionApp.Application.Services;
+using AuctionApp.Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
+
 namespace AuctionApp.WebUI
 {
-    public class Program
+    public static class Program
     {
         public static async Task Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
+            builder.Services.AddControllersWithViews();
+
+            var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+
+            builder.Services.AddScoped<IUserService, UserService>();
+
+            builder.Services.AddDbContext<AuctionDBContext>(options
+                     => options.UseSqlServer(connectionString));
+
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();

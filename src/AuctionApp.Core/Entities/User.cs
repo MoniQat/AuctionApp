@@ -1,15 +1,18 @@
-﻿namespace AuctionApp.Core.Entities
+﻿using Microsoft.AspNetCore.Identity;
+
+namespace AuctionApp.Core.Entities
 {
-    public class User
+    public class User : IdentityUser
     {
         public int Id { get; set; }
         public string FirstName { get; set; }
-        public string SecondName { get; set; }
-        public string Username { get; set; }
-        public string Password { get; set; } // do it as hash
+        public string LastName { get; set; }
         public string EmailAddress { get; set; }
         public DateOnly DateOfBirth { get; set; }
 
-        public ICollection<Bid> Bids { get; set; }
+        public string IdentityUserId { get; set; }
+        public string PasswordSalt { get; set; }
+
+        public virtual ICollection<Bid> Bids { get; set; }
     }
 }

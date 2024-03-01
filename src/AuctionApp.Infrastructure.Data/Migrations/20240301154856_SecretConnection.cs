@@ -5,7 +5,7 @@
 namespace AuctionApp.Infrastructure.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class CyclesRemove : Migration
+    public partial class SecretConnection : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

@@ -5,6 +5,8 @@ namespace AuctionApp.Infrastructure.Data
 {
     public class AuctionDBContext : DbContext
     {
+        public const string Schema = "AuctionApplication";
+
         public AuctionDBContext()
         {
 
@@ -16,15 +18,12 @@ namespace AuctionApp.Infrastructure.Data
         public DbSet<Lot> Lots { get; set; }
         public DbSet<Bid> Bids { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=AuctionAppDB;Trusted_Connection=True;");
-        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfigurationsFromAssembly(typeof(AuctionDBContext).Assembly);
+            modelBuilder.HasDefaultSchema(Schema);
 
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(AuctionDBContext).Assembly);
             base.OnModelCreating(modelBuilder);
         }
     }

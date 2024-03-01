@@ -8,7 +8,7 @@
         public decimal BidAmount { get; set; }
         public DateTime BidTime { get; set; }
 
-        // public bool is_the_biggest_bid??
+        public bool IsLastBid { get; set; }
 
         public virtual User User { get; set; }
         public virtual Lot Lot { get; set; }

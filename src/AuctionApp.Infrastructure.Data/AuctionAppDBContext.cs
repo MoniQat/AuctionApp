@@ -1,9 +1,11 @@
 ﻿using AuctionApp.Core.Entities;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace AuctionApp.Infrastructure.Data
 {
-    public class AuctionDBContext : DbContext
+    public class AuctionDBContext : IdentityDbContext<User, IdentityRole<int>, int>
     {
         public const string Schema = "AuctionApplication";
 
@@ -11,20 +13,23 @@ namespace AuctionApp.Infrastructure.Data
         {
 
         }
-        public AuctionDBContext(DbContextOptions<AuctionDBContext> options) : base(options) { }
+        public AuctionDBContext(DbContextOptions<AuctionDBContext> options) : base(options)
+        {
+            Database.EnsureDeleted();
+            Database.EnsureCreated();
+        }
         public DbSet<User> Users { get; set; }
         public DbSet<Item> Items { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Lot> Lots { get; set; }
         public DbSet<Bid> Bids { get; set; }
 
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder builder)
         {
-            modelBuilder.HasDefaultSchema(Schema);
+            builder.HasDefaultSchema(Schema);
 
-            modelBuilder.ApplyConfigurationsFromAssembly(typeof(AuctionDBContext).Assembly);
-            base.OnModelCreating(modelBuilder);
+            builder.ApplyConfigurationsFromAssembly(typeof(AuctionDBContext).Assembly);
+            base.OnModelCreating(builder);
         }
     }
 }

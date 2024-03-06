@@ -1,0 +1,44 @@
+﻿@using AuctionApp.Core.Entities
+@using Microsoft.AspNetCore.Identity
+@{
+    ViewData["Title"] = "Items";
+}
+
+
+<div class="row">
+    <div class="text-center">
+        <h1 class="display-4">Items</h1>
+    </div>
+    <div class="col-md-6">
+        <button type="submit" class="w-25 btn btn-lg btn-primary">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Items" asp-action="AddItem">Add Item</a>
+        </button>
+    </div>
+    <div class="col-md-6">
+        <div class="text-center">
+            <h3 class="display-8">Filters</h3>
+        </div>
+    </div>
+</div>
+<br />
+<div class="row">
+    @foreach (var item in ViewBag.Items)
+    {
+        <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="https://dummyimage.com/600x400/000/fff" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">@item.name</h5>
+                <p class="card-text">@item.description</p>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Category: @item.categoryName</li>
+            </ul>
+            <div class="card-body">
+                <a href="#" class="card-link">Lot link</a>
+                <a href="#" class="card-link">Manage link</a>
+            </div>
+        </div>
+    }
+
+</div>
+

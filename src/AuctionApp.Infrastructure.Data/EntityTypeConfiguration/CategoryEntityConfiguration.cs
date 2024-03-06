@@ -10,6 +10,12 @@ namespace AuctionApp.Infrastructure.Data.EntityTypeConfiguration
         {
             builder.HasKey(x => x.Id);
 
+            builder.Property(x => x.Name).IsRequired();
+            builder.Property(x => x.Name).HasColumnType("varchar(30)");
+
+            builder.HasMany(x => x.Items)
+                .WithOne(x => x.Category)
+                .HasForeignKey(x => x.CategoryId);
 
         }
     }

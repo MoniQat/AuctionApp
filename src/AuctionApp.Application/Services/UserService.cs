@@ -1,49 +1,24 @@
-﻿using AuctionApp.Core.Entities;
+﻿using AuctionApp.Application.Interfaces;
+using AuctionApp.Core.Entities;
 using AuctionApp.Core.Resources;
-using AuctionApp.Infrastructure.Data;
-using Microsoft.EntityFrameworkCore;
+using System.Text.RegularExpressions;
 
 namespace AuctionApp.Application.Services
 {
-    public sealed class UserService : IUserService
+    public sealed class UserService() : IUserService
     {
-        private readonly AuctionDBContext _context;
-        private readonly int _iteration = 3;
 
-        public UserService(AuctionDBContext context)
+        public async Task<UserInformationResource> GetInfo(User user)
         {
-            _context = context;
-        }
+            var username = user.UserName;
+            var firstName = user.FirstName;
+            var lastName = user.LastName;
+            var dateOfBirth = user.DateOfBirth;
+            var profileImage = user.ProfileImage;
+            var phoneNumber = Regex.Replace(user.PhoneNumber, @"(\d{2})(\d{3})(\d{3})(\d{2})(\d{2})", "$1($2)-$3-$4-$5");
+            var email = user.Email;
 
-        public async Task<UserResource> Register(RegisterResource resource)
-        {
-            var user = new User
-            {
-                UserName = resource.Username,
-                Email = resource.EmailAddress,
-                PasswordSalt = PasswordHasher.GenerateSalt()
-            };
-            user.PasswordHash = PasswordHasher.ComputeHash(resource.Password, user.PasswordSalt, _iteration);
-            await _context.Users.AddAsync(user);
-            await _context.SaveChangesAsync();
-
-            return new UserResource(user.Id, user.UserName);
-        }
-
-        public async Task<UserResource> Login(LoginResource resource)
-        {
-            var user = await _context.Users
-                .FirstOrDefaultAsync(x => x.UserName == resource.Username);
-
-            if (user == null)
-                throw new Exception("Username or password did not match.");
-
-            var passwordHash = PasswordHasher.ComputeHash(resource.Password, user.PasswordSalt, _iteration);
-
-            if (user.PasswordHash != passwordHash)
-                throw new Exception("Username or password did not match.");
-
-            return new UserResource(user.Id, user.UserName);
+            return new UserInformationResource(username, firstName, lastName, dateOfBirth, profileImage, phoneNumber, email);
         }
     }
 }

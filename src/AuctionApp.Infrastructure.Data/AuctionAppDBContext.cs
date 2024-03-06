@@ -13,11 +13,7 @@ namespace AuctionApp.Infrastructure.Data
         {
 
         }
-        public AuctionDBContext(DbContextOptions<AuctionDBContext> options) : base(options)
-        {
-            Database.EnsureDeleted();
-            Database.EnsureCreated();
-        }
+        public AuctionDBContext(DbContextOptions<AuctionDBContext> options) : base(options) { }
         public DbSet<User> Users { get; set; }
         public DbSet<Item> Items { get; set; }
         public DbSet<Category> Categories { get; set; }

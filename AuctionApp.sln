@@ -29,7 +29,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuctionApp.Identity", "src\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuctionApp.WebAPI", "src\AuctionApp.WebAPI\AuctionApp.WebAPI.csproj", "{4334DD7F-1A67-4E9E-9ACA-DF1B041D5704}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuctionApp.WebUI", "src\AuctionApp.WebUI\AuctionApp.WebUI.csproj", "{263E3B15-70C1-4B7D-BF43-49E3998B8F3E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuctionApp.WebUI", "src\AuctionApp.WebUI\AuctionApp.WebUI.csproj", "{263E3B15-70C1-4B7D-BF43-49E3998B8F3E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

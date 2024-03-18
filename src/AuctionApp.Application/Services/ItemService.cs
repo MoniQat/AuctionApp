@@ -14,11 +14,16 @@ namespace AuctionApp.Application.Services
         {
 
             IQueryable<Item> query = _dbContext.Items.Where(x => x.OwnerId == user.Id).AsQueryable();
-            List<ItemResource> items = query.Select(x => new ItemResource(
+
+            List<ItemResource> items = await query.Select(x => new ItemResource(
+                x.Id,
                 x.Name,
                 x.Description,
-                x.Category.Name
-                )).ToList();
+                x.Category.Name,
+                _dbContext.Lots.Any(l => l.Item.Id == x.Id && l.AuctionEnd > DateTime.UtcNow) ? LotStatus.OnAuction :
+                _dbContext.Lots.Any(l => l.Item.Id == x.Id && l.AuctionEnd < DateTime.UtcNow) ? LotStatus.Sold :
+                LotStatus.Unauctioned
+                )).ToListAsync();
 
             return items;
         }
@@ -35,17 +40,16 @@ namespace AuctionApp.Application.Services
 
         public async Task<bool> AddUserItem(User user, ItemResource itemResource)
         {
+            var category = _dbContext.Categories
+                                .Where(x => x.Name == itemResource.categoryName)
+                                .FirstOrDefault();
+
             Item item = new Item()
             {
                 Name = itemResource.name,
                 Description = itemResource.description,
-                Category = _dbContext.Categories
-                                .Where(x => x.Name == itemResource.categoryName)
-                                .FirstOrDefault(),
-
-                CategoryId = _dbContext.Categories
-                                .Where(x => x.Name == itemResource.categoryName)
-                                .FirstOrDefault().Id,
+                Category = category,
+                CategoryId = category.Id,
                 Owner = user,
                 OwnerId = user.Id,
             };

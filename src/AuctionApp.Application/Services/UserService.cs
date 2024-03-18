@@ -15,8 +15,10 @@ namespace AuctionApp.Application.Services
             var lastName = user.LastName;
             var dateOfBirth = user.DateOfBirth;
             var profileImage = user.ProfileImage;
-            var phoneNumber = Regex.Replace(user.PhoneNumber, @"(\d{2})(\d{3})(\d{3})(\d{2})(\d{2})", "$1($2)-$3-$4-$5");
             var email = user.Email;
+
+            const string phoneNumberPattern = @"(\d{2})(\d{3})(\d{3})(\d{2})(\d{2})";
+            var phoneNumber = Regex.Replace(user.PhoneNumber, phoneNumberPattern, "$1($2)-$3-$4-$5");
 
             return new UserInformationResource(username, firstName, lastName, dateOfBirth, profileImage, phoneNumber, email);
         }

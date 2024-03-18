@@ -1,0 +1,22 @@
+﻿@{
+    ViewData["Title"] = "Create auction";
+}
+@model AuctionApp.Core.Resources.LotResource
+
+<p> @ViewBag.itemId </p>
+<form asp-controller="Lot" asp-action="AddLot" method="POST">
+    <input type="hidden" asp-for="itemId" />
+    <div class="mb-3">
+        <label class="form-label">Auction End</label>
+        <input type="datetime-local" class="form-control" asp-for="auctionEnd" placeholder="Auction End">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Minimal step</label>
+        <input type="text" class="form-control" asp-for="minStep" placeholder="Minimal Step">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Buy now price (not necessary)</label>
+        <input type="text" class="form-control" asp-for="buyNowPrice" placeholder="Buy Now Price">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
